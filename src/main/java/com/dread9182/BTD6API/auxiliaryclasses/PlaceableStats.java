@@ -29,5 +29,5 @@ public class PlaceableStats {
 	
 	@Getter
 	@Setter
-	private List<String> special;
+	private List<PlaceableSpecialStats> special;
 }
