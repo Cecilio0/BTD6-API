@@ -31,4 +31,9 @@ public class MapController {
 	public ResponseEntity<List<Map>> findByIdOrName(@PathVariable String difficulty){
 		return new ResponseEntity<>(ms.findByDifficulty(difficulty), HttpStatus.OK);
 	}
+	
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Map> findByIdOrName(@PathVariable String id, @RequestBody Map map){
+		return new ResponseEntity<>(ms.update(id, map), HttpStatus.OK);
+	}
 }
