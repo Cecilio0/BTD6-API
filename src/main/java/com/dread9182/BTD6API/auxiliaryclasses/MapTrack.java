@@ -3,7 +3,8 @@ package com.dread9182.BTD6API.auxiliaryclasses;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Track {
+// Class for defining explicitly different map paths and their lengths
+public class MapTrack {
 	
 	@Getter
 	@Setter
