@@ -1,6 +1,6 @@
 package com.dread9182.BTD6API.models;
 
-import com.dread9182.BTD6API.auxiliaryclasses.MapTrack;
+import com.dread9182.BTD6API.auxiliaryclass.MapTrack;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;

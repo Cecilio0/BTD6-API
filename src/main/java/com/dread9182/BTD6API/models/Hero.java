@@ -1,9 +1,9 @@
 package com.dread9182.BTD6API.models;
 
-import com.dread9182.BTD6API.auxiliaryclasses.HeroLevel;
-import com.dread9182.BTD6API.auxiliaryclasses.HeroUnlock;
-import com.dread9182.BTD6API.auxiliaryclasses.PlaceableCost;
-import com.dread9182.BTD6API.auxiliaryclasses.PlaceableStats;
+import com.dread9182.BTD6API.auxiliaryclass.HeroLevel;
+import com.dread9182.BTD6API.auxiliaryclass.HeroUnlock;
+import com.dread9182.BTD6API.auxiliaryclass.PlaceableCost;
+import com.dread9182.BTD6API.auxiliaryclass.PlaceableStats;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;

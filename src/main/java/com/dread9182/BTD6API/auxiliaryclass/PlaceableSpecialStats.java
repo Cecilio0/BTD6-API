@@ -1,4 +1,4 @@
-package com.dread9182.BTD6API.auxiliaryclasses;
+package com.dread9182.BTD6API.auxiliaryclass;
 
 import lombok.Getter;
 import lombok.Setter;

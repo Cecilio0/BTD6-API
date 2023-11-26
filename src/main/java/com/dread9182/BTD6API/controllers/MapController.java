@@ -3,6 +3,7 @@ package com.dread9182.BTD6API.controllers;
 import com.dread9182.BTD6API.models.Bloon;
 import com.dread9182.BTD6API.models.Map;
 import com.dread9182.BTD6API.services.map.IMapService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
