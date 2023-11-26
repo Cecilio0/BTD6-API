@@ -1,16 +1,20 @@
 package com.dread9182.BTD6API.services.bloon;
 
+import com.dread9182.BTD6API.exception.ValueNotValidException;
 import com.dread9182.BTD6API.models.Bloon;
 import com.dread9182.BTD6API.repositories.IBloonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class BloonService implements IBloonService{
 	@Autowired
 	IBloonRepository br;
+	
+	private final String[] validBloonTypes = {"bloon", "moab"};
 	
 	@Override
 	public List<Bloon> findAll() {
@@ -34,7 +38,27 @@ public class BloonService implements IBloonService{
 	
 	@Override
 	public Bloon update(String id, Bloon bloon) {
+		
+		if(!Arrays.asList(validBloonTypes).contains(bloon.getType()))
+			throw new ValueNotValidException("The type value has to be either moab or bloon");
+		
+		if(bloon.getRbe() < 0)
+			throw new ValueNotValidException("The rbe value has to greater than or equal to 0");
+		
+		if(bloon.getHp() < 0)
+			throw new ValueNotValidException("The hp value has to be greater than or equal to 0");
+		
+		if(bloon.getSpeed() < 0)
+			throw new ValueNotValidException("The speed value has to be greater than or equal to 0");
+		
+		if(bloon.getFirstRound() < 0)
+			throw new ValueNotValidException("The firstRound value has to be greater than or equal to 0");
+		
+		if(bloon.getFirstRoundABR() < 0)
+			throw new ValueNotValidException("The firstRoundABR value has to be greater than or equal to 0");
+		
 		Bloon toUpdate = br.findById(id).orElse(null);
+		
 		if(toUpdate != null){
 			toUpdate.setName(bloon.getName());
 			toUpdate.setType(bloon.getType());

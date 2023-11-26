@@ -1,5 +1,6 @@
 package com.dread9182.BTD6API.controllers;
 
+import com.dread9182.BTD6API.exception.NotFoundException;
 import com.dread9182.BTD6API.models.Bloon;
 import com.dread9182.BTD6API.models.Map;
 import com.dread9182.BTD6API.services.map.IMapService;
@@ -25,6 +26,15 @@ public class MapController {
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Map> findByIdOrName(@PathVariable String id, @RequestParam(required = false, name = "name", defaultValue = "false") boolean name){
 		Map responseObject = name? ms.findByName(id) : ms.findById(id);
+		
+		if (responseObject == null){
+			if (name){
+				throw new NotFoundException("No map with the specified name was found");
+			} else {
+				throw new NotFoundException("No map with the specified id was found");
+			}
+		}
+		
 		return new ResponseEntity<>(responseObject, HttpStatus.OK);
 	}
 	
@@ -35,6 +45,11 @@ public class MapController {
 	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Map> findByIdOrName(@PathVariable String id, @RequestBody Map map){
-		return new ResponseEntity<>(ms.update(id, map), HttpStatus.OK);
+		Map responseObject = ms.update(id, map);
+		
+		if (responseObject == null)
+			throw new NotFoundException("No map with the specified id was found");
+		
+		return new ResponseEntity<>(responseObject, HttpStatus.OK);
 	}
 }

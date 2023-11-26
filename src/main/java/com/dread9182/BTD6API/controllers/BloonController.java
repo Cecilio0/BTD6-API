@@ -27,9 +27,9 @@ public class BloonController {
 		
 		if (responseObject == null){
 			if (name){
-				throw new NotFoundException("No bloons with the specified name were found");
+				throw new NotFoundException("No bloon with the specified name was found");
 			} else {
-				throw new NotFoundException("No bloons with the specified id were found");
+				throw new NotFoundException("No bloon with the specified id was found");
 			}
 		}
 		
@@ -43,7 +43,12 @@ public class BloonController {
 	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Bloon> update(@PathVariable String id, @RequestBody Bloon bloon){
-		return new ResponseEntity<>(bs.update(id, bloon), HttpStatus.OK);
+		Bloon responseObject = bs.update(id, bloon);
+		
+		if(responseObject == null)
+			throw new NotFoundException("No bloon with the specified id was found");
+		
+		return new ResponseEntity<>(responseObject, HttpStatus.OK);
 	}
 	
 }

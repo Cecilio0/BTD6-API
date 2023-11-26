@@ -18,4 +18,14 @@ public class ApiExceptionHandler {
 		
 		return new ResponseEntity<>(apiException, badRequest);
 	}
+	
+	@ExceptionHandler(value = {ValueNotValidException.class})
+	public ResponseEntity<Object> handleValueNotValidException(ValueNotValidException e){
+		ApiException apiException = new ApiException(
+				e.getMessage(),
+				badRequest
+		);
+		
+		return new ResponseEntity<>(apiException, badRequest);
+	}
 }

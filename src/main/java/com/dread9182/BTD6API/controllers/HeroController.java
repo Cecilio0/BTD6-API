@@ -1,5 +1,6 @@
 package com.dread9182.BTD6API.controllers;
 
+import com.dread9182.BTD6API.exception.NotFoundException;
 import com.dread9182.BTD6API.models.Hero;
 import com.dread9182.BTD6API.services.hero.IHeroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,15 @@ public class HeroController {
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Hero> findByIdOrName(@PathVariable String id, @RequestParam(required = false, name = "name", defaultValue = "false") boolean name){
 		Hero responseObject = name? hs.findByName(id): hs.findById(id);
+		
+		if (responseObject == null){
+			if (name){
+				throw new NotFoundException("No hero with the specified name was found");
+			} else {
+				throw new NotFoundException("No hero with the specified id was found");
+			}
+		}
+		
 		return new ResponseEntity<>(responseObject, HttpStatus.OK);
 	}
 	
