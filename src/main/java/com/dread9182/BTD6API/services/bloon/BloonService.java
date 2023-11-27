@@ -28,7 +28,7 @@ public class BloonService implements IBloonService{
 	
 	@Override
 	public Bloon findByName(String name) {
-		return br.findByName(name);
+		return br.findByName(name).orElse(null);
 	}
 	
 	@Override
@@ -38,6 +38,9 @@ public class BloonService implements IBloonService{
 	
 	@Override
 	public Bloon update(String id, Bloon bloon) {
+		
+		if(bloon.getName() == null || bloon.getName().length() == 0)
+			throw new ValueNotValidException("The name value can not be null");
 		
 		if(!Arrays.asList(validBloonTypes).contains(bloon.getType()))
 			throw new ValueNotValidException("The type value has to be either moab or bloon");

@@ -29,7 +29,7 @@ public class MapService implements IMapService{
 	
 	@Override
 	public Map findByName(String name) {
-		return mr.findByName(name);
+		return mr.findByName(name).orElse(null);
 	}
 	
 	@Override

@@ -14,4 +14,6 @@ public interface IHeroService {
 	
 	List<Hero> findByHowIsUnlocked(String how);
 	
+	Hero update(String id, Hero hero);
+	
 }
