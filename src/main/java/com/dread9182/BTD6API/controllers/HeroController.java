@@ -42,4 +42,9 @@ public class HeroController {
 		return new ResponseEntity<>(hs.findByHowIsUnlocked(how), HttpStatus.OK);
 	}
 	
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Hero> update(@PathVariable String id, @RequestBody Hero hero){
+		return new ResponseEntity<>(hs.update(id, hero), HttpStatus.OK);
+	}
+	
 }
