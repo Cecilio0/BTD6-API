@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class BloonService implements IBloonService{
 	@Autowired
-	IBloonRepository br;
+	private IBloonRepository br;
 	
 	private final String[] validBloonTypes = {"bloon", "moab"};
 	
@@ -33,6 +33,8 @@ public class BloonService implements IBloonService{
 	
 	@Override
 	public List<Bloon> findByType(String type) {
+		if(!Arrays.asList(validBloonTypes).contains(type))
+			throw new ValueNotValidException("The type value has to be either moab or bloon");
 		return br.findByType(type);
 	}
 	

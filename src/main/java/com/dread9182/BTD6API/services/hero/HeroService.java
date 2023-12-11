@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class HeroService implements IHeroService{
 	@Autowired
-	IHeroRepository hr;
+	private IHeroRepository hr;
+	
+	private final String[] validUnlockHow = {"level", "money"};
 	
 	@Override
 	public List<Hero> findAll() {
@@ -32,6 +35,9 @@ public class HeroService implements IHeroService{
 	
 	@Override
 	public List<Hero> findByHowIsUnlocked(String how) {
+		if(!Arrays.asList(validUnlockHow).contains(how))
+			throw new ValueNotValidException("The how value has to be either level or money");
+		
 		List<Hero> heroes = hr.findAll();
 		List<Hero> responseHeroes = new ArrayList<>();
 		
@@ -74,6 +80,9 @@ public class HeroService implements IHeroService{
 				|| hero.getUnlock().getHow() == null
 				|| hero.getUnlock().getValue() == null)
 			throw new ValueNotValidException("No unlock field can be null");
+		
+		if(!Arrays.asList(validUnlockHow).contains(hero.getUnlock().getHow()))
+			throw new ValueNotValidException("The how value has to be either level or money");
 		
 		if(hero.getLevelSpeed() == null)
 			throw new ValueNotValidException("The levelSpeed value can not be null");

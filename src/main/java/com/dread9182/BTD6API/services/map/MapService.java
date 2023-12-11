@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class MapService implements IMapService{
 	@Autowired
-	IMapRepository mr;
+	private IMapRepository mr;
 	
 	private final String[] validMapDifficulties = {"Beginner", "Intermediate", "Advanced", "Expert"};
 	
@@ -34,6 +34,8 @@ public class MapService implements IMapService{
 	
 	@Override
 	public List<Map> findByDifficulty(String difficulty) {
+		if(!Arrays.asList(validMapDifficulties).contains(difficulty))
+			throw new ValueNotValidException("The difficulty value has to be Beginner, Intermediate, Advanced or Expert");
 		return mr.findByDifficulty(difficulty);
 	}
 	
