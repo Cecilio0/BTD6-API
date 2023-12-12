@@ -72,9 +72,8 @@ public class HeroService implements IHeroService{
 				|| hero.getStats().getDamage() == null
 				|| hero.getStats().getRange() == null
 				|| hero.getStats().getPierce() == null
-				|| hero.getStats().getAttackSpeed() == null
-				|| hero.getStats().getSpecial() == null)
-			throw new ValueNotValidException("No stats field can be null");
+				|| hero.getStats().getAttackSpeed() == null)
+			throw new ValueNotValidException("No stats field aside from special can be null");
 		
 		if(hero.getUnlock() == null
 				|| hero.getUnlock().getHow() == null
@@ -112,18 +111,14 @@ public class HeroService implements IHeroService{
 		Hero toUpdate = hr.findById(id).orElse(null);
 		
 		if(toUpdate != null){
-			toUpdate.setName(hero.getName()); // can't be null
-			toUpdate.setDescription(hero.getDescription()); // can't be null
-			toUpdate.setSkinChangeLevels(hero.getSkinChangeLevels()); // has to have at least length 4
+			toUpdate.setName(hero.getName());
+			toUpdate.setDescription(hero.getDescription());
+			toUpdate.setSkinChangeLevels(hero.getSkinChangeLevels());
 			toUpdate.setSkins(hero.getSkins());
-			toUpdate.setCost(hero.getCost()); // each cost has to be a positive integer
-			toUpdate.setStats(hero.getStats()); // no field can be null
-			toUpdate.setUnlock(hero.getUnlock()); // no field can be null
-			toUpdate.setLevelSpeed(hero.getLevelSpeed()); // has to be a positive float
-			// level field hast to be greater than 0 and lower than 21
-			// description can't be null
-			// rounds have to have integer values greater than or equal to 0
-			// effects has to have at least length 1
+			toUpdate.setCost(hero.getCost());
+			toUpdate.setStats(hero.getStats());
+			toUpdate.setUnlock(hero.getUnlock());
+			toUpdate.setLevelSpeed(hero.getLevelSpeed());
 			toUpdate.setLevels(hero.getLevels());
 			
 			hr.save(toUpdate);

@@ -42,6 +42,9 @@ public class MapService implements IMapService{
 	@Override
 	public Map update(String id, Map map) {
 		
+		if(map.getName() == null)
+			throw new ValueNotValidException("The name value can not be null");
+		
 		if(!Arrays.asList(validMapDifficulties).contains(map.getDifficulty()))
 			throw new ValueNotValidException("The difficulty value has to be Beginner, Intermediate, Advanced or Expert");
 			
@@ -50,6 +53,8 @@ public class MapService implements IMapService{
 			throw new ValueNotValidException("The map must have at least one track");
 		
 		for (MapTrack track: tracks) {
+			if(track.getName() == null)
+				throw new ValueNotValidException("The name value for a track can not be null");
 			if (track.getRbs() <= 0)
 				throw new ValueNotValidException("The track length in red bloon seconds (rbs) has to be greater than 0");
 		}

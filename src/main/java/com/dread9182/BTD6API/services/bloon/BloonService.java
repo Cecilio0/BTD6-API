@@ -41,7 +41,7 @@ public class BloonService implements IBloonService{
 	@Override
 	public Bloon update(String id, Bloon bloon) {
 		
-		if(bloon.getName() == null || bloon.getName().length() == 0)
+		if(bloon.getName() == null)
 			throw new ValueNotValidException("The name value can not be null");
 		
 		if(!Arrays.asList(validBloonTypes).contains(bloon.getType()))
