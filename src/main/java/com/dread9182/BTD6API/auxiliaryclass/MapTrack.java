@@ -1,17 +1,16 @@
 package com.dread9182.BTD6API.auxiliaryclass;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 // Class for defining explicitly different map paths and their lengths
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MapTrack {
 	
-	@Getter
-	@Setter
 	private String name;
 	
-	@Getter
-	@Setter
 	private double rbs;
 	
 }

@@ -1,24 +1,28 @@
 package com.dread9182.BTD6API.models;
 
-import com.dread9182.BTD6API.auxiliaryclass.MapTrack;
+
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document("maps")
-public class Map {
+@Document("users")
+public class User {
+	
 	@Id
 	private String id;
 	
-	private String name;
+	private String firstName;
 	
-	private String difficulty;
+	private String lastName;
 	
-	private List<MapTrack> tracks;
+	private String role;
+	
+	private String email;
+	
+	private String password;
 }

@@ -4,52 +4,36 @@ import com.dread9182.BTD6API.auxiliaryclass.HeroLevel;
 import com.dread9182.BTD6API.auxiliaryclass.HeroUnlock;
 import com.dread9182.BTD6API.auxiliaryclass.PlaceableCost;
 import com.dread9182.BTD6API.auxiliaryclass.PlaceableStats;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Document("heroes")
 public class Hero {
 	@Id
-	@Getter
 	private String id;
 	
-	@Getter
-	@Setter
 	private String name;
 	
-	@Getter
-	@Setter
 	private String description;
 	
-	@Getter
-	@Setter
 	private List<Integer> skinChangeLevels;
 	
-	@Getter
-	@Setter
 	private List<String> skins;
 	
-	@Getter
-	@Setter
 	private PlaceableCost cost;
 	
-	@Getter
-	@Setter
 	private PlaceableStats stats;
 	
-	@Getter
-	@Setter
 	private HeroUnlock unlock;
 	
-	@Getter
-	@Setter
 	private String levelSpeed;
 	
-	@Getter
-	@Setter
 	private List<HeroLevel> levels;
 }

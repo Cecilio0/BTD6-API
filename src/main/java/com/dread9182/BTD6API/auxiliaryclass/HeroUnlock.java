@@ -1,15 +1,15 @@
 package com.dread9182.BTD6API.auxiliaryclass;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 // Class for defining how a hero is unlocked and how much it costs or at which level it happens
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class HeroUnlock {
-	@Getter
-	@Setter
+	
 	private String how;
 	
-	@Getter
-	@Setter
 	private String value;
 }
