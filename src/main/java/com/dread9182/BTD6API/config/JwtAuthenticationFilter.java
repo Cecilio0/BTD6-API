@@ -1,6 +1,5 @@
 package com.dread9182.BTD6API.config;
 
-import com.dread9182.BTD6API.exception.UserNotAuthenticatedException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

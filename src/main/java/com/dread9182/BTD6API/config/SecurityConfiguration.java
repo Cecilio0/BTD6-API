@@ -9,35 +9,39 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@EnableWebSecurity
-@RequiredArgsConstructor
-public class SecurityConfiguration {
+public class SecurityConfiguration implements WebMvcConfigurer {
+
+
+
+
+
 	
-	private final JwtAuthenticationFilter jwtAuthenticationFilter;
-	private final AuthenticationProvider authenticationProvider;
-	
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-		httpSecurity
-				.csrf()
-				.disable()
-				.authorizeHttpRequests()
-				.requestMatchers("/users/**")
-				.permitAll()
-				.anyRequest()
-				.authenticated()
-				.and()
-				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and()
-				.authenticationProvider(authenticationProvider)
-				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-				
-				
-		return httpSecurity.build();
-	}
+//	private final JwtAuthenticationFilter jwtAuthenticationFilter;
+//	private final AuthenticationProvider authenticationProvider;
+//
+//	@Bean
+//	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+//		httpSecurity
+//				.csrf()
+//				.disable()
+//				.authorizeHttpRequests()
+//				.requestMatchers("/users/**")
+//				.permitAll()
+//				.anyRequest()
+//				.authenticated()
+//				.and()
+//				.sessionManagement()
+//				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//				.and()
+//				.authenticationProvider(authenticationProvider)
+//				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+//
+//
+//		return httpSecurity.build();
+//	}
 	
 	
 }

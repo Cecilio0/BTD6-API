@@ -29,14 +29,4 @@ public class ApiExceptionHandler {
 		
 		return new ResponseEntity<>(apiException, badRequest);
 	}
-	
-	@ExceptionHandler(value = {UserNotAuthenticatedException.class})
-	public ResponseEntity<Object> handleUserNotAuthenticatedException(UserNotAuthenticatedException e){
-		ApiException apiException = new ApiException(
-				e.getMessage(),
-				forbidden
-		);
-		
-		return new ResponseEntity<>(apiException, forbidden);
-	}
 }
