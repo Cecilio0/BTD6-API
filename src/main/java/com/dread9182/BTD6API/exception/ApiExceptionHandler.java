@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class ApiExceptionHandler {
-	HttpStatus badRequest = HttpStatus.BAD_REQUEST;
-	HttpStatus forbidden = HttpStatus.FORBIDDEN;
+	private final HttpStatus badRequest = HttpStatus.BAD_REQUEST;
 	
 	@ExceptionHandler(value = {NotFoundException.class})
 	public ResponseEntity<Object> handleNotFoundException(NotFoundException e){

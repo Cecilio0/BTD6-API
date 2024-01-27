@@ -3,6 +3,7 @@ package com.dread9182.BTD6API.map;
 import com.dread9182.BTD6API.exception.NotFoundException;
 import com.dread9182.BTD6API.map.model.Map;
 import com.dread9182.BTD6API.map.service.IMapService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/maps")
 public class MapController {
 	@Autowired
-	IMapService ms;
+	private final IMapService ms;
 	
 	@GetMapping("/find")
 	public ResponseEntity<List<Map>> findAll(){

@@ -3,6 +3,7 @@ package com.dread9182.BTD6API.hero;
 import com.dread9182.BTD6API.exception.NotFoundException;
 import com.dread9182.BTD6API.hero.model.Hero;
 import com.dread9182.BTD6API.hero.service.IHeroService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/heroes")
 public class HeroController {
 	@Autowired
-	IHeroService hs;
+	private final IHeroService hs;
 	
 	@GetMapping("/find")
 	public ResponseEntity<List<Hero>> findAll(){

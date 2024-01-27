@@ -2,6 +2,7 @@ package com.dread9182.BTD6API.config;
 
 import com.dread9182.BTD6API.user.IUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 	
+	@Autowired
 	private final IUserRepository ur;
 	
 	@Bean // Check if a user that's trying to be validated exists in the database

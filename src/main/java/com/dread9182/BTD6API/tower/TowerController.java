@@ -3,6 +3,7 @@ package com.dread9182.BTD6API.tower;
 import com.dread9182.BTD6API.exception.NotFoundException;
 import com.dread9182.BTD6API.tower.model.Tower;
 import com.dread9182.BTD6API.tower.service.ITowerService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,12 +11,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/towers")
 public class TowerController {
 	
 	@Autowired
-	private ITowerService ts;
+	private final ITowerService ts;
 	
 	@GetMapping("/find")
 	public ResponseEntity<List<Tower>> findAll(){

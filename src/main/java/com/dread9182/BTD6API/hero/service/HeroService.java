@@ -4,6 +4,7 @@ import com.dread9182.BTD6API.hero.model.HeroLevel;
 import com.dread9182.BTD6API.exception.ValueNotValidException;
 import com.dread9182.BTD6API.hero.model.Hero;
 import com.dread9182.BTD6API.hero.IHeroRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,10 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class HeroService implements IHeroService {
 	@Autowired
-	private IHeroRepository hr;
+	private final IHeroRepository hr;
 	
 	private final String[] validUnlockHow = {"level", "money"};
 	

@@ -3,6 +3,7 @@ package com.dread9182.BTD6API.bloon.service;
 import com.dread9182.BTD6API.bloon.model.Bloon;
 import com.dread9182.BTD6API.bloon.IBloonRepository;
 import com.dread9182.BTD6API.exception.ValueNotValidException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class BloonService implements IBloonService{
 	@Autowired
-	private IBloonRepository br;
+	private final IBloonRepository br;
 	
 	private final String[] validBloonTypes = {"bloon", "moab"};
 	

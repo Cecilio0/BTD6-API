@@ -4,6 +4,7 @@ import com.dread9182.BTD6API.tower.model.TowerUpgrade;
 import com.dread9182.BTD6API.exception.ValueNotValidException;
 import com.dread9182.BTD6API.tower.ITowerRepository;
 import com.dread9182.BTD6API.tower.model.Tower;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +12,10 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class TowerService implements ITowerService{
 	@Autowired
-	private ITowerRepository tr;
+	private final ITowerRepository tr;
 	
 	private final String[] validTowerTypes = {"Primary", "Military", "Magic", "Support"};
 	

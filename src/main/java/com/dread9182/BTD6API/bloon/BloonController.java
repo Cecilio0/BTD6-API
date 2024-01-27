@@ -3,6 +3,7 @@ package com.dread9182.BTD6API.bloon;
 import com.dread9182.BTD6API.bloon.model.Bloon;
 import com.dread9182.BTD6API.bloon.service.IBloonService;
 import com.dread9182.BTD6API.exception.NotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/bloons")
 public class BloonController {
 	@Autowired
-	IBloonService bs;
+	private final IBloonService bs;
 	
 	@GetMapping("/find")
 	public ResponseEntity<List<Bloon>> findAll(){

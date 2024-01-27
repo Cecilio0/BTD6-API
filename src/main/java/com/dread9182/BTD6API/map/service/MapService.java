@@ -4,6 +4,7 @@ import com.dread9182.BTD6API.exception.ValueNotValidException;
 import com.dread9182.BTD6API.map.IMapRepository;
 import com.dread9182.BTD6API.map.model.Map;
 import com.dread9182.BTD6API.map.model.MapTrack;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +12,10 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class MapService implements IMapService{
 	@Autowired
-	private IMapRepository mr;
+	private final IMapRepository mr;
 	
 	private final String[] validMapDifficulties = {"Beginner", "Intermediate", "Advanced", "Expert"};
 	

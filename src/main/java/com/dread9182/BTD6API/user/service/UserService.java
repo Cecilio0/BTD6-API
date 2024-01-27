@@ -7,6 +7,7 @@ import com.dread9182.BTD6API.user.model.User;
 import com.dread9182.BTD6API.user.model.request.UserAuthenticationRequest;
 import com.dread9182.BTD6API.user.model.request.UserAuthenticationResponse;
 import com.dread9182.BTD6API.user.model.request.UserRegisterRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,16 +15,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class UserService implements IUserService {
 	
 	@Autowired
-	private IUserRepository ur;
+	private final IUserRepository ur;
 	@Autowired
-	private PasswordEncoder passwordEncoder;
+	private final PasswordEncoder passwordEncoder;
 	@Autowired
-	private JwtService jwtService;
+	private final JwtService jwtService;
 	@Autowired
-	private AuthenticationManager authenticationManager;
+	private final AuthenticationManager authenticationManager;
 	
 	@Override
 	public UserAuthenticationResponse register(UserRegisterRequest request) {
