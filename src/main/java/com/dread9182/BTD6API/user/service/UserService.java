@@ -29,6 +29,7 @@ public class UserService implements IUserService {
 	
 	@Override
 	public UserAuthenticationResponse register(UserRegisterRequest request) {
+		// todo implement interceptor for bad UserRegisterRequest
 		User user = User.builder()
 				.firstName(request.getFirstName())
 				.lastName(request.getLastName())
@@ -48,6 +49,8 @@ public class UserService implements IUserService {
 	
 	@Override
 	public UserAuthenticationResponse authenticate(UserAuthenticationRequest request) {
+		// todo implement interceptor for checking if user even sent a username and a password
+		// todo implement exception for bad user data
 		authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(
 						request.getEmail(),

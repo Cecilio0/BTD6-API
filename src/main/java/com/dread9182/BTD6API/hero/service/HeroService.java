@@ -18,6 +18,7 @@ public class HeroService implements IHeroService {
 	@Autowired
 	private final IHeroRepository hr;
 	
+	// todo create enum with this information
 	private final String[] validUnlockHow = {"level", "money"};
 	
 	@Override
@@ -37,6 +38,7 @@ public class HeroService implements IHeroService {
 	
 	@Override
 	public List<Hero> findByHowIsUnlocked(String how) {
+		// todo implement following code as interceptor
 		if(!Arrays.asList(validUnlockHow).contains(how))
 			throw new ValueNotValidException("The how value has to be either level or money");
 		
@@ -53,6 +55,7 @@ public class HeroService implements IHeroService {
 	
 	@Override
 	public Hero update(String id, Hero hero) {
+		// todo implement following code as interceptor
 		if (hero.getName() == null)
 			throw new ValueNotValidException("The name value can not be null");
 		
