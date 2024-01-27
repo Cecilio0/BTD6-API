@@ -32,7 +32,7 @@ public class UserService implements IUserService {
 				.lastName(request.getLastName())
 				.email(request.getEmail())
 				.password(passwordEncoder.encode(request.getPassword()))
-				.role(Role.USER)
+				.role(Role.ROLE_USER)
 				.build();
 		
 		ur.save(user);

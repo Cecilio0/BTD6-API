@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,10 +19,14 @@ import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	
 	private final JwtService jwtService;
 	private final UserDetailsService userDetailsService;
+	
+	// Defines explicitly which routes should not be filtered by this filter
+	
 	@Override
 	protected void doFilterInternal(
 			@NonNull HttpServletRequest request,
@@ -63,6 +68,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			}
 		}
 		filterChain.doFilter(request, response);
-		
 	}
 }
