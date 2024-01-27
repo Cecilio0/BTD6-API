@@ -29,7 +29,7 @@ public class UserService implements IUserService {
 	
 	@Override
 	public UserAuthenticationResponse register(UserRegisterRequest request) {
-		// todo implement interceptor for bad UserRegisterRequest
+		// todo implement interceptor for bad UserRegisterRequest and unique emails
 		User user = User.builder()
 				.firstName(request.getFirstName())
 				.lastName(request.getLastName())

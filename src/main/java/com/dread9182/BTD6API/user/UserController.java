@@ -5,7 +5,6 @@ import com.dread9182.BTD6API.user.model.request.UserAuthenticationResponse;
 import com.dread9182.BTD6API.user.model.request.UserRegisterRequest;
 import com.dread9182.BTD6API.user.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
