@@ -1,6 +1,6 @@
 package com.dread9182.BTD6API.config;
 
-import com.dread9182.BTD6API.repositories.IUserRepository;
+import com.dread9182.BTD6API.user.IUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
