@@ -27,7 +27,18 @@ public class SecurityConfiguration {
 		httpSecurity
 				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests((authorize) ->
-						authorize.requestMatchers("/users/**")
+						authorize.requestMatchers(
+								"/users/**", // Whitelisted authorization
+										"v2/api-docs", // Whitelisted resources needed by swagger and openapi
+										"/v3/api-docs",
+										"/v3/api-docs/**",
+										"/swagger-ui/**",
+										"/swagger-ui.html",
+										"/swagger-resources",
+										"/swagger-resources/**",
+										"/configuration/ui",
+										"/configuration/security",
+										"/webjars/**")
 								.permitAll()
 								.requestMatchers("towers/update/**", "heroes/update/**", "bloons/update/**", "maps/update/**")
 								.hasRole("ADMIN")

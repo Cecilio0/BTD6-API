@@ -41,8 +41,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		// If token is incorrectly formatted or is nonexistent do an early return
 		if(authHeader == null || !authHeader.startsWith("Bearer ")) {
 			filterChain.doFilter(request, response);
-			//todo implement exception to return error message not just httpStatus
-			//throw new UserNotAuthenticatedException("User has provided no authentication or it is incorrectly formatted");
 			return;
 		}
 		

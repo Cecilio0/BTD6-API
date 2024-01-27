@@ -17,6 +17,7 @@ public class TowerService implements ITowerService{
 	@Autowired
 	private final ITowerRepository tr;
 	
+	// todo create enum with this information
 	private final String[] validTowerTypes = {"Primary", "Military", "Magic", "Support"};
 	
 	@Override
@@ -36,14 +37,16 @@ public class TowerService implements ITowerService{
 	
 	@Override
 	public List<Tower> findByType(String type) {
+		// todo implement following code as interceptor
 		if(!Arrays.asList(validTowerTypes).contains(type))
 			throw new ValueNotValidException("The type value has to be Primary, Military, Magic or Support");
+		
 		return tr.findByType(type);
 	}
 	
 	@Override
 	public Tower update(String id, Tower tower) {
-		
+		// todo implement following code as interceptor
 		if (tower.getName() == null)
 			throw new ValueNotValidException("The name value can not be null");
 		

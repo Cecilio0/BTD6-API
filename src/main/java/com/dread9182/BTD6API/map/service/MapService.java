@@ -17,6 +17,7 @@ public class MapService implements IMapService{
 	@Autowired
 	private final IMapRepository mr;
 	
+	// todo create enum with this information
 	private final String[] validMapDifficulties = {"Beginner", "Intermediate", "Advanced", "Expert"};
 	
 	@Override
@@ -36,6 +37,7 @@ public class MapService implements IMapService{
 	
 	@Override
 	public List<Map> findByDifficulty(String difficulty) {
+		// todo implement following code as interceptor
 		if(!Arrays.asList(validMapDifficulties).contains(difficulty))
 			throw new ValueNotValidException("The difficulty value has to be Beginner, Intermediate, Advanced or Expert");
 		return mr.findByDifficulty(difficulty);
@@ -43,7 +45,7 @@ public class MapService implements IMapService{
 	
 	@Override
 	public Map update(String id, Map map) {
-		
+		// todo implement following code as interceptor
 		if(map.getName() == null)
 			throw new ValueNotValidException("The name value can not be null");
 		

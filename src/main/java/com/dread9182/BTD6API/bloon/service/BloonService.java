@@ -16,6 +16,7 @@ public class BloonService implements IBloonService{
 	@Autowired
 	private final IBloonRepository br;
 	
+	// todo create enum with this information
 	private final String[] validBloonTypes = {"bloon", "moab"};
 	
 	@Override
@@ -35,6 +36,7 @@ public class BloonService implements IBloonService{
 	
 	@Override
 	public List<Bloon> findByType(String type) {
+		// todo implement following code as interceptor
 		if(!Arrays.asList(validBloonTypes).contains(type))
 			throw new ValueNotValidException("The type value has to be either moab or bloon");
 		return br.findByType(type);
@@ -42,7 +44,7 @@ public class BloonService implements IBloonService{
 	
 	@Override
 	public Bloon update(String id, Bloon bloon) {
-		
+		// todo implement following code as interceptor
 		if(bloon.getName() == null)
 			throw new ValueNotValidException("The name value can not be null");
 		
