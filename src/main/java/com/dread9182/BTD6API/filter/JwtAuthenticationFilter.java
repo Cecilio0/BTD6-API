@@ -1,5 +1,6 @@
-package com.dread9182.BTD6API.config;
+package com.dread9182.BTD6API.filter;
 
+import com.dread9182.BTD6API.config.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
