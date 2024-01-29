@@ -106,7 +106,7 @@ public class TowerService implements ITowerService{
 	private void validateTowerUpgrades (List <TowerUpgrade> upgrades) {
 		for(TowerUpgrade upgrade: upgrades){
 			if (upgrade.getName() == null)
-				throw new ValueNotValidException("The name value fo an upgrade can not be null");
+				throw new ValueNotValidException("The name value for an upgrade can not be null");
 			
 			if (upgrade.getDescription() == null)
 				throw new ValueNotValidException("The description value of an upgrade can not be null");

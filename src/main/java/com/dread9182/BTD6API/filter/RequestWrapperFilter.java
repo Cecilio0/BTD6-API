@@ -16,6 +16,7 @@ import java.io.IOException;
 public class RequestWrapperFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+		log.info("Request Wrapper");
 		CachedBodyHttpServletRequest cachedRequest = new CachedBodyHttpServletRequest(request);
 		filterChain.doFilter(cachedRequest, response);
 	}

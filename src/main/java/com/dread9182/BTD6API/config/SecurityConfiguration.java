@@ -51,15 +51,6 @@ public class SecurityConfiguration {
 		
 		return httpSecurity.build();
 	}
-	
-//	@Bean
-//	public FilterRegistrationBean<TestAuthenticationFilter> testAuthenticationFilterFilterRegistrationBean() {
-//		FilterRegistrationBean<TestAuthenticationFilter> registrationBean = new FilterRegistrationBean<>();
-//		registrationBean.setName("testAuthenticationFilter");
-//		registrationBean.setFilter(new TestAuthenticationFilter());
-//		registrationBean.setOrder(1);
-//		return registrationBean;
-//	}
 
 
 }

@@ -41,7 +41,6 @@ public class UserController {
 	public ResponseEntity<UserAuthenticationResponse> authenticate(
 			@RequestBody UserAuthenticationRequest request
 	) {
-		//todo implement Exceptions
 		return new ResponseEntity<>(us.authenticate(request), HttpStatus.OK);
 	}
 	

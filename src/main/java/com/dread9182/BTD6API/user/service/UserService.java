@@ -1,6 +1,7 @@
 package com.dread9182.BTD6API.user.service;
 
 import com.dread9182.BTD6API.config.JwtService;
+import com.dread9182.BTD6API.exception.ValueNotValidException;
 import com.dread9182.BTD6API.user.*;
 import com.dread9182.BTD6API.user.model.Role;
 import com.dread9182.BTD6API.user.model.User;
@@ -29,7 +30,10 @@ public class UserService implements IUserService {
 	
 	@Override
 	public UserAuthenticationResponse register(UserRegisterRequest request) {
-		// todo implement interceptor for bad UserRegisterRequest and unique emails
+		User verifyUniqueness = ur.findByEmail(request.getEmail()).orElse(null);
+		if(verifyUniqueness != null)
+			throw new ValueNotValidException("This email already has already been registered");
+		
 		User user = User.builder()
 				.firstName(request.getFirstName())
 				.lastName(request.getLastName())
@@ -49,8 +53,6 @@ public class UserService implements IUserService {
 	
 	@Override
 	public UserAuthenticationResponse authenticate(UserAuthenticationRequest request) {
-		// todo implement interceptor for checking if user even sent a username and a password
-		// todo implement exception for bad user data
 		authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(
 						request.getEmail(),
@@ -58,7 +60,9 @@ public class UserService implements IUserService {
 				)
 		);
 		
-		User user = ur.findByEmail(request.getEmail()).orElse(null);
+		User user = ur.findByEmail(request.getEmail()).orElseThrow(() ->
+				new ValueNotValidException("No user registered with the provided email"));
+		
 		
 		String jwt = jwtService.generateToken(user);
 		
