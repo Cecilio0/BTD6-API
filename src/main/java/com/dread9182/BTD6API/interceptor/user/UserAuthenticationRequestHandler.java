@@ -1,4 +1,4 @@
-package com.dread9182.BTD6API.interceptor;
+package com.dread9182.BTD6API.interceptor.user;
 
 import com.dread9182.BTD6API.exception.ValueNotValidException;
 import com.dread9182.BTD6API.user.model.request.UserAuthenticationRequest;

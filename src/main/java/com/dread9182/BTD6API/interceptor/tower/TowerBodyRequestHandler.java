@@ -1,4 +1,4 @@
-package com.dread9182.BTD6API.interceptor;
+package com.dread9182.BTD6API.interceptor.tower;
 
 import com.dread9182.BTD6API.exception.ValueNotValidException;
 import com.dread9182.BTD6API.tower.model.Tower;

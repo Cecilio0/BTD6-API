@@ -1,6 +1,9 @@
 package com.dread9182.BTD6API.config;
 
-import com.dread9182.BTD6API.interceptor.*;
+import com.dread9182.BTD6API.interceptor.tower.TowerBodyRequestHandler;
+import com.dread9182.BTD6API.interceptor.tower.TowerTypeRequestHandler;
+import com.dread9182.BTD6API.interceptor.user.UserAuthenticationRequestHandler;
+import com.dread9182.BTD6API.interceptor.user.UserRegisterRequestHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -23,5 +26,11 @@ public class WebConfig implements WebMvcConfigurer {
 						"/towers/update/**",
 						"/towers/save")
 				.order(11);
+		
+		// Heroes
+		
+		// Bloons
+		
+		// Maps
 	}
 }
