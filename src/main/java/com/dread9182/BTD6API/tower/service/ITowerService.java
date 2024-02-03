@@ -15,5 +15,7 @@ public interface ITowerService {
 	List<Tower> findByType(String type);
 	
 	Tower update(String id, Tower tower);
+	
+	Tower save(Tower tower);
 
 }

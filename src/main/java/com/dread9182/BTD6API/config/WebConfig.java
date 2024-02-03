@@ -17,6 +17,11 @@ public class WebConfig implements WebMvcConfigurer {
 		
 		// Towers
 		registry.addInterceptor(new TowerTypeRequestHandler()).addPathPatterns("/towers/type/**").order(10);
-		registry.addInterceptor(new TowerBodyRequestHandler()).addPathPatterns("/towers/update/**").order(11);
+		registry
+				.addInterceptor(new TowerBodyRequestHandler())
+				.addPathPatterns(
+						"/towers/update/**",
+						"/towers/save")
+				.order(11);
 	}
 }

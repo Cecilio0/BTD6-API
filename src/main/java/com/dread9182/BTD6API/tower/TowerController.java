@@ -73,5 +73,12 @@ public class TowerController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
-	// todo create endpoint for tower creation
+	@Operation(
+			summary = "Create a new tower"
+	)
+	@PostMapping("/save")
+	public ResponseEntity<Tower> save(@RequestBody Tower tower){
+		Tower result = ts.save(tower);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
 }
