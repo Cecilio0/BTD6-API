@@ -66,7 +66,11 @@ public class TowerController {
 	)
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Tower> update(@PathVariable String id, @RequestBody Tower tower){
-		return new ResponseEntity<>(ts.update(id, tower), HttpStatus.OK);
+		Tower result = ts.update(id, tower);
+		if(result == null)
+			throw new NotFoundException("No tower found with the given id");
+		
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
 	// todo create endpoint for tower creation
