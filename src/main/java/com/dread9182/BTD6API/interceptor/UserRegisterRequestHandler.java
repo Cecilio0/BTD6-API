@@ -5,18 +5,15 @@ import com.dread9182.BTD6API.user.model.request.UserRegisterRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.util.stream.Collectors;
 
-@Slf4j
 public class UserRegisterRequestHandler implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
 		String bodyString = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-		log.info(bodyString);
 		UserRegisterRequest userRegisterRequest = new ObjectMapper().readValue(bodyString, UserRegisterRequest.class);
 		
 		if(userRegisterRequest.getFirstName() == null || userRegisterRequest.getFirstName().equals("")){

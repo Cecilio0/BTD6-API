@@ -7,19 +7,16 @@ import com.dread9182.BTD6API.tower.model.TowerUpgrade;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Slf4j
 public class TowerBodyRequestHandler implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String bodyString = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-		log.info(bodyString);
 		Tower tower = new ObjectMapper().readValue(bodyString, Tower.class);
 		
 		if (tower.getName() == null || tower.getName().equals(""))
