@@ -16,4 +16,6 @@ public interface IHeroService {
 	
 	Hero update(String id, Hero hero);
 	
+	Hero save(Hero hero);
+	
 }

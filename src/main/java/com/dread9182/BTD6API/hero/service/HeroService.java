@@ -4,6 +4,7 @@ import com.dread9182.BTD6API.hero.model.HeroLevel;
 import com.dread9182.BTD6API.exception.ValueNotValidException;
 import com.dread9182.BTD6API.hero.model.Hero;
 import com.dread9182.BTD6API.hero.IHeroRepository;
+import com.dread9182.BTD6API.tower.model.Tower;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,6 @@ import java.util.List;
 public class HeroService implements IHeroService {
 	@Autowired
 	private final IHeroRepository hr;
-	
-	// todo create enum with this information
-	private final String[] validUnlockHow = {"level", "money"};
 	
 	@Override
 	public List<Hero> findAll() {
@@ -38,9 +36,6 @@ public class HeroService implements IHeroService {
 	
 	@Override
 	public List<Hero> findByHowIsUnlocked(String how) {
-		// todo implement following code as interceptor
-		if(!Arrays.asList(validUnlockHow).contains(how))
-			throw new ValueNotValidException("The how value has to be either level or money");
 		
 		List<Hero> heroes = hr.findAll();
 		List<Hero> responseHeroes = new ArrayList<>();
@@ -55,64 +50,7 @@ public class HeroService implements IHeroService {
 	
 	@Override
 	public Hero update(String id, Hero hero) {
-		// todo implement following code as interceptor
-		if (hero.getName() == null)
-			throw new ValueNotValidException("The name value can not be null");
 		
-		if(hero.getDescription() == null)
-			throw new ValueNotValidException("The description value can not be null");
-		
-		if(hero.getSkinChangeLevels() == null || hero.getSkinChangeLevels().size() < 4)
-			throw new ValueNotValidException("The skinChangeLevels value has to have at least length 4");
-		
-		if(hero.getCost() == null
-				|| hero.getCost().getEasy() < 0
-				|| hero.getCost().getMedium() < 0
-				|| hero.getCost().getHard() < 0
-				|| hero.getCost().getImpoppable() < 0)
-			throw new ValueNotValidException("Each cost value has to be a positive integer and can not be null");
-		
-		if(hero.getStats() == null
-				|| hero.getStats().getType() == null
-				|| hero.getStats().getDamage() == null
-				|| hero.getStats().getRange() == null
-				|| hero.getStats().getPierce() == null
-				|| hero.getStats().getAttackSpeed() == null)
-			throw new ValueNotValidException("No stats field aside from special can be null");
-		
-		if(hero.getUnlock() == null
-				|| hero.getUnlock().getHow() == null
-				|| hero.getUnlock().getValue() == null)
-			throw new ValueNotValidException("No unlock field can be null");
-		
-		if(!Arrays.asList(validUnlockHow).contains(hero.getUnlock().getHow()))
-			throw new ValueNotValidException("The how value has to be either level or money");
-		
-		if(hero.getLevelSpeed() == null)
-			throw new ValueNotValidException("The levelSpeed value can not be null");
-		
-		if(hero.getLevels() == null)
-			throw new ValueNotValidException("The levels value can not be null");
-		
-		for (HeroLevel heroLevel: hero.getLevels()) {
-			if(heroLevel.getDescription() == null)
-				throw new ValueNotValidException("The description value of each hero level can not be null");
-			
-			if(heroLevel.getLevel() < 1 || heroLevel.getLevel() > 20)
-				throw new ValueNotValidException("The level value of each hero level has to be between 1 and 20");
-			
-			if(heroLevel.getEffects() == null
-					|| heroLevel.getEffects().size() == 0)
-				throw new ValueNotValidException("Each hero level must have at least one effect");
-			
-			if(heroLevel.getRounds() == null
-					|| heroLevel.getRounds().getEasy() == null
-					|| heroLevel.getRounds().getMedium() == null
-					|| heroLevel.getRounds().getHard() == null
-					|| heroLevel.getRounds().getImpoppable() == null)
-				throw new ValueNotValidException("Each hero level round must have a value");
-		}
-			
 		Hero toUpdate = hr.findById(id).orElse(null);
 		
 		if(toUpdate != null){
@@ -130,5 +68,26 @@ public class HeroService implements IHeroService {
 		}
 		
 		return toUpdate;
+	}
+	
+	@Override
+	public Hero save(Hero hero) {
+		Hero verifyUniqueness = hr.findByName(hero.getName()).orElse(null);
+		if(verifyUniqueness != null)
+			throw new ValueNotValidException("A hero with this name already exists");
+		
+		return hr
+				.save(Hero
+						.builder()
+						.name(hero.getName())
+						.description(hero.getDescription())
+						.skinChangeLevels(hero.getSkinChangeLevels())
+						.skins(hero.getSkins())
+						.cost(hero.getCost())
+						.stats(hero.getStats())
+						.unlock(hero.getUnlock())
+						.levelSpeed(hero.getLevelSpeed())
+						.levels(hero.getLevels())
+						.build());
 	}
 }

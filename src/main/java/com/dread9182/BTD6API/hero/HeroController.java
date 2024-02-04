@@ -63,8 +63,15 @@ public class HeroController {
 	)
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Hero> update(@PathVariable String id, @RequestBody Hero hero){
-		return new ResponseEntity<>(hs.update(id, hero), HttpStatus.OK);
+		Hero result = hs.update(id, hero);
+		if(result == null)
+			throw new NotFoundException("No hero found with the given id");
+		
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
-	// todo create endpoint for hero creation
+	@PostMapping("/save")
+	public ResponseEntity<Hero> save(@RequestBody Hero hero){
+		return new ResponseEntity<>(hs.save(hero), HttpStatus.OK);
+	}
 }
