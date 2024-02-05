@@ -70,8 +70,11 @@ public class HeroController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(
+			summary = "Create a new hero"
+	)
 	@PostMapping("/save")
 	public ResponseEntity<Hero> save(@RequestBody Hero hero){
-		return new ResponseEntity<>(hs.save(hero), HttpStatus.OK);
+		return new ResponseEntity<>(hs.save(hero), HttpStatus.CREATED);
 	}
 }

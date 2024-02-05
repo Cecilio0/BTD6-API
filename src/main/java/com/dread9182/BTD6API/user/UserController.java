@@ -31,7 +31,7 @@ public class UserController {
 	public ResponseEntity<UserAuthenticationResponse> register(
 			@RequestBody UserRegisterRequest request
 	) {
-		return new ResponseEntity<>(us.register(request), HttpStatus.OK);
+		return new ResponseEntity<>(us.register(request), HttpStatus.CREATED);
 	}
 	
 	@Operation(

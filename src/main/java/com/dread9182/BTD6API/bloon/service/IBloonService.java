@@ -14,4 +14,6 @@ public interface IBloonService {
 	List<Bloon> findByType(String type);
 	
 	Bloon update(String id, Bloon bloon);
+	
+	Bloon save(Bloon bloon);
 }

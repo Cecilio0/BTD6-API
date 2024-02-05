@@ -79,6 +79,6 @@ public class TowerController {
 	@PostMapping("/save")
 	public ResponseEntity<Tower> save(@RequestBody Tower tower){
 		Tower result = ts.save(tower);
-		return new ResponseEntity<>(result, HttpStatus.OK);
+		return new ResponseEntity<>(result, HttpStatus.CREATED);
 	}
 }
