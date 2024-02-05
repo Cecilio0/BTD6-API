@@ -1,5 +1,7 @@
 package com.dread9182.BTD6API.config;
 
+import com.dread9182.BTD6API.interceptor.bloon.BloonBodyRequestHandler;
+import com.dread9182.BTD6API.interceptor.bloon.BloonTypeRequestHandler;
 import com.dread9182.BTD6API.interceptor.hero.HeroBodyRequestHandler;
 import com.dread9182.BTD6API.interceptor.hero.HeroUnlockRequestHandler;
 import com.dread9182.BTD6API.interceptor.tower.TowerBodyRequestHandler;
@@ -37,6 +39,12 @@ public class WebConfig implements WebMvcConfigurer {
 				.order(16);
 		
 		// Bloons
+		registry.addInterceptor(new BloonTypeRequestHandler()).addPathPatterns("/bloons/type/**").order(20);
+		registry.addInterceptor(new BloonBodyRequestHandler())
+				.addPathPatterns(
+						"/bloons/save",
+						"/bloons/update/**")
+				.order(21);
 		
 		// Maps
 	}

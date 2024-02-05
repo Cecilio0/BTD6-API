@@ -16,8 +16,6 @@ public class BloonService implements IBloonService{
 	@Autowired
 	private final IBloonRepository br;
 	
-	// todo create enum with this information
-	private final String[] validBloonTypes = {"bloon", "moab"};
 	
 	@Override
 	public List<Bloon> findAll() {
@@ -36,36 +34,11 @@ public class BloonService implements IBloonService{
 	
 	@Override
 	public List<Bloon> findByType(String type) {
-		// todo implement following code as interceptor
-		if(!Arrays.asList(validBloonTypes).contains(type))
-			throw new ValueNotValidException("The type value has to be either moab or bloon");
 		return br.findByType(type);
 	}
 	
 	@Override
 	public Bloon update(String id, Bloon bloon) {
-		// todo implement following code as interceptor
-		if(bloon.getName() == null)
-			throw new ValueNotValidException("The name value can not be null");
-		
-		if(!Arrays.asList(validBloonTypes).contains(bloon.getType()))
-			throw new ValueNotValidException("The type value has to be either moab or bloon");
-		
-		if(bloon.getRbe() < 0)
-			throw new ValueNotValidException("The rbe value has to greater than or equal to 0");
-		
-		if(bloon.getHp() < 0)
-			throw new ValueNotValidException("The hp value has to be greater than or equal to 0");
-		
-		if(bloon.getSpeed() < 0)
-			throw new ValueNotValidException("The speed value has to be greater than or equal to 0");
-		
-		if(bloon.getFirstRound() < 0)
-			throw new ValueNotValidException("The firstRound value has to be greater than or equal to 0");
-		
-		if(bloon.getFirstRoundABR() < 0)
-			throw new ValueNotValidException("The firstRoundABR value has to be greater than or equal to 0");
-		
 		Bloon toUpdate = br.findById(id).orElse(null);
 		
 		if(toUpdate != null){
