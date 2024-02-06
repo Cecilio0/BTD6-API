@@ -16,4 +16,6 @@ public interface IMapService {
 	
 	Map update(String id, Map map);
 	
+	Map save(Map map);
+	
 }

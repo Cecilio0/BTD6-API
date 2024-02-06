@@ -1,6 +1,7 @@
 package com.dread9182.BTD6API.map.service;
 
 import com.dread9182.BTD6API.exception.ValueNotValidException;
+import com.dread9182.BTD6API.hero.model.Hero;
 import com.dread9182.BTD6API.map.IMapRepository;
 import com.dread9182.BTD6API.map.model.Map;
 import com.dread9182.BTD6API.map.model.MapTrack;
@@ -50,5 +51,20 @@ public class MapService implements IMapService{
 		}
 		
 		return toUpdate;
+	}
+	
+	@Override
+	public Map save(Map map) {
+		Map verifyUniqueness = mr.findByName(map.getName()).orElse(null);
+		if(verifyUniqueness != null)
+			throw new ValueNotValidException("A map with this name already exists");
+		
+		return mr
+				.save(Map
+						.builder()
+						.name(map.getName())
+						.difficulty(map.getDifficulty())
+						.tracks(map.getTracks())
+						.build());
 	}
 }

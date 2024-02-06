@@ -56,7 +56,7 @@ public class MapController {
 			summary = "Find maps by difficulty"
 	)
 	@GetMapping("/difficulty/{difficulty}")
-	public ResponseEntity<List<Map>> findByIdOrName(@PathVariable String difficulty){
+	public ResponseEntity<List<Map>> findByDifficulty(@PathVariable String difficulty){
 		return new ResponseEntity<>(ms.findByDifficulty(difficulty), HttpStatus.OK);
 	}
 	
@@ -64,7 +64,7 @@ public class MapController {
 			summary = "Update an existing map"
 	)
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Map> findByIdOrName(@PathVariable String id, @RequestBody Map map){
+	public ResponseEntity<Map> update(@PathVariable String id, @RequestBody Map map){
 		Map responseObject = ms.update(id, map);
 		
 		if (responseObject == null)
@@ -73,5 +73,11 @@ public class MapController {
 		return new ResponseEntity<>(responseObject, HttpStatus.OK);
 	}
 	
-	// todo create endpoint for map creation
+	@Operation(
+			summary = "Create a new map"
+	)
+	@PostMapping("/save")
+	public ResponseEntity<Map> save(@RequestBody Map map){
+		return new ResponseEntity<>(ms.save(map), HttpStatus.OK);
+	}
 }
