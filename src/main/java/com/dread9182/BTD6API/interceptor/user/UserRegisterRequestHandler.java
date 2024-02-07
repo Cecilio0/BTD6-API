@@ -23,7 +23,6 @@ public class UserRegisterRequestHandler implements HandlerInterceptor {
 		} else if(userRegisterRequest.getEmail() == null || userRegisterRequest.getEmail().equals("")){
 			throw new ValueNotValidException("The email field on a user register request cannot be null");
 		} else if(userRegisterRequest.getPassword() == null || userRegisterRequest.getPassword().equals("")){
-			// todo verify that the password is strong enough
 			throw new ValueNotValidException("The password field on a user register request cannot be null");
 		}
 		

@@ -72,9 +72,8 @@ public class BloonController {
 		return new ResponseEntity<>(responseObject, HttpStatus.OK);
 	}
 	
-	// todo create endpoint for tower creation
 	@Operation(
-			summary = "Update an existing bloon"
+			summary = "Create a new bloon"
 	)
 	@PostMapping("/save")
 	public ResponseEntity<Bloon> save(@RequestBody Bloon bloon){

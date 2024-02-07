@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
 
@@ -17,8 +18,11 @@ import io.swagger.v3.oas.annotations.servers.Server;
 				),
 				title = "BTD6 API",
 				description = "BTD6 API for general game information",
-				version = "0.1"
-				// todo project license if applicable
+				version = "0.1",
+				license = @License(
+						name = "MIT",
+						url = "https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt"
+				)
 		),
 		externalDocs = @ExternalDocumentation(
 				description = "Documentation on github",
