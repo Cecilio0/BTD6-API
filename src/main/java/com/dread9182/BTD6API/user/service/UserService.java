@@ -1,6 +1,7 @@
 package com.dread9182.BTD6API.user.service;
 
 import com.dread9182.BTD6API.config.JwtService;
+import com.dread9182.BTD6API.exception.NotFoundException;
 import com.dread9182.BTD6API.exception.ValueNotValidException;
 import com.dread9182.BTD6API.user.*;
 import com.dread9182.BTD6API.user.model.Role;
@@ -61,7 +62,7 @@ public class UserService implements IUserService {
 		);
 		
 		User user = ur.findByEmail(request.getEmail()).orElseThrow(() ->
-				new ValueNotValidException("No user registered with the provided email"));
+				new NotFoundException("No user registered with the provided email"));
 		
 		
 		String jwt = jwtService.generateToken(user);
