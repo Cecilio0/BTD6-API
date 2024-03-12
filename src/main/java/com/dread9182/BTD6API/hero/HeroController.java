@@ -57,7 +57,7 @@ public class HeroController {
 	public ResponseEntity<List<Hero>> findByHowIsUnlocked(@PathVariable String how) {
 		return new ResponseEntity<>(hs.findByHowIsUnlocked(how), HttpStatus.OK);
 	}
-	
+	// todo Create and implement DTO for update and save, as well as implementing interceptors for said DTO
 	@Operation(
 			summary = "Update an existing hero"
 	)

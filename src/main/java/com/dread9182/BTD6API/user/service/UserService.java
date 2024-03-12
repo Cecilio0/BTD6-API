@@ -29,6 +29,7 @@ public class UserService implements IUserService {
 	@Autowired
 	private final AuthenticationManager authenticationManager;
 	
+	// todo set email to lower case to avoid the same email registering multiple times
 	@Override
 	public UserAuthenticationResponse register(UserRegisterRequest request) {
 		User verifyUniqueness = ur.findByEmail(request.getEmail()).orElse(null);
