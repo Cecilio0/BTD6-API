@@ -24,7 +24,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTest {
+public class UserServiceTests {
 	// InjectMocks annotation indicates the class in which the mocks will be injected
 	@InjectMocks
 	@Autowired
@@ -131,7 +131,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void UserService_AuthenticateUser_ThrowsNotFoundException() {
+	public void UserService_AuthenticateUser_ThrowsValueNotValidException() {
 		// We build an Item for the repository to return
 		User user = User.builder()
 				.id("7d5c97c0-74b1-4bef-b297-1ea357efd82a")
@@ -151,7 +151,7 @@ public class UserServiceTest {
 		Mockito.when(ur.findByEmail(Mockito.anyString())).thenReturn(Optional.empty());
 		
 		// We check that when we run the method an exception is thrown, and it has type NotFoundException
-		Assertions.assertThrows(NotFoundException.class, () -> us.authenticate(userAuthenticationRequest));
+		Assertions.assertThrows(ValueNotValidException.class, () -> us.authenticate(userAuthenticationRequest));
 	}
 
 }

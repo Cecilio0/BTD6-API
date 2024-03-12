@@ -1,6 +1,8 @@
 package com.dread9182.BTD6API.map.service;
 
 import com.dread9182.BTD6API.map.model.Map;
+import com.dread9182.BTD6API.map.model.request.MapSaveRequest;
+import com.dread9182.BTD6API.map.model.request.MapUpdateRequest;
 
 import java.util.List;
 
@@ -14,8 +16,8 @@ public interface IMapService {
 	
 	List<Map> findByDifficulty(String difficulty);
 	
-	Map update(String id, Map map);
+	Map update(String id, MapUpdateRequest map);
 	
-	Map save(Map map);
+	Map save(MapSaveRequest map);
 	
 }

@@ -4,8 +4,9 @@ import com.dread9182.BTD6API.interceptor.bloon.BloonBodyRequestHandler;
 import com.dread9182.BTD6API.interceptor.bloon.BloonTypeRequestHandler;
 import com.dread9182.BTD6API.interceptor.hero.HeroBodyRequestHandler;
 import com.dread9182.BTD6API.interceptor.hero.HeroUnlockRequestHandler;
-import com.dread9182.BTD6API.interceptor.map.MapBodyRequestHandler;
+import com.dread9182.BTD6API.interceptor.map.MapPostRequestHandler;
 import com.dread9182.BTD6API.interceptor.map.MapDifficultyRequestHandler;
+import com.dread9182.BTD6API.interceptor.map.MapPutRequestHandler;
 import com.dread9182.BTD6API.interceptor.tower.TowerBodyRequestHandler;
 import com.dread9182.BTD6API.interceptor.tower.TowerTypeRequestHandler;
 import com.dread9182.BTD6API.interceptor.user.UserAuthenticationRequestHandler;
@@ -50,10 +51,7 @@ public class WebConfig implements WebMvcConfigurer {
 		
 		// Maps
 		registry.addInterceptor(new MapDifficultyRequestHandler()).addPathPatterns("/maps/difficulty/**").order(25);
-		registry.addInterceptor(new MapBodyRequestHandler())
-				.addPathPatterns(
-						"/maps/save",
-						"/maps/update/**")
-				.order(26);
+		registry.addInterceptor(new MapPostRequestHandler()).addPathPatterns("/maps/save").order(26);
+		registry.addInterceptor(new MapPutRequestHandler()).addPathPatterns("/maps/update/**").order(27);
 	}
 }

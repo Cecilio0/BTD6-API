@@ -5,6 +5,8 @@ import com.dread9182.BTD6API.hero.model.Hero;
 import com.dread9182.BTD6API.map.IMapRepository;
 import com.dread9182.BTD6API.map.model.Map;
 import com.dread9182.BTD6API.map.model.MapTrack;
+import com.dread9182.BTD6API.map.model.request.MapSaveRequest;
+import com.dread9182.BTD6API.map.model.request.MapUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,12 +41,10 @@ public class MapService implements IMapService{
 	}
 	
 	@Override
-	public Map update(String id, Map map) {
+	public Map update(String id, MapUpdateRequest map) {
 		Map toUpdate = mr.findById(id).orElse(null);
 		
 		if(toUpdate != null){
-			toUpdate.setName(map.getName());
-			toUpdate.setDifficulty(map.getDifficulty());
 			toUpdate.setTracks(map.getTracks());
 			
 			mr.save(toUpdate);
@@ -54,7 +54,7 @@ public class MapService implements IMapService{
 	}
 	
 	@Override
-	public Map save(Map map) {
+	public Map save(MapSaveRequest map) {
 		Map verifyUniqueness = mr.findByName(map.getName()).orElse(null);
 		if(verifyUniqueness != null)
 			throw new ValueNotValidException("A map with this name already exists");

@@ -1,11 +1,9 @@
 package com.dread9182.BTD6API.interceptor.map;
 
-import com.dread9182.BTD6API.bloon.model.Bloon;
-import com.dread9182.BTD6API.bloon.model.BloonTypes;
 import com.dread9182.BTD6API.exception.ValueNotValidException;
-import com.dread9182.BTD6API.map.model.Map;
 import com.dread9182.BTD6API.map.model.MapDifficulties;
 import com.dread9182.BTD6API.map.model.MapTrack;
+import com.dread9182.BTD6API.map.model.request.MapSaveRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,11 +13,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class MapBodyRequestHandler implements HandlerInterceptor {
+public class MapPostRequestHandler implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		String bodyString = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-		Map map = new ObjectMapper().readValue(bodyString, Map.class);
+		MapSaveRequest map = new ObjectMapper().readValue(bodyString, MapSaveRequest.class);
 		
 		if(map.getName() == null || map.getName().equals(""))
 			throw new ValueNotValidException("The name value can not be null");

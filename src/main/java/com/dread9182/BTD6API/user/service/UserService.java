@@ -62,7 +62,7 @@ public class UserService implements IUserService {
 		);
 		
 		User user = ur.findByEmail(request.getEmail()).orElseThrow(() ->
-				new NotFoundException("No user registered with the provided email"));
+				new ValueNotValidException("Invalid user data"));
 		
 		
 		String jwt = jwtService.generateToken(user);

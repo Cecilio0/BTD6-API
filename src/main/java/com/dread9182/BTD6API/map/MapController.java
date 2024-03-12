@@ -2,6 +2,8 @@ package com.dread9182.BTD6API.map;
 
 import com.dread9182.BTD6API.exception.NotFoundException;
 import com.dread9182.BTD6API.map.model.Map;
+import com.dread9182.BTD6API.map.model.request.MapSaveRequest;
+import com.dread9182.BTD6API.map.model.request.MapUpdateRequest;
 import com.dread9182.BTD6API.map.service.IMapService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -64,7 +66,7 @@ public class MapController {
 			summary = "Update an existing map"
 	)
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Map> update(@PathVariable String id, @RequestBody Map map){
+	public ResponseEntity<Map> update(@PathVariable String id, @RequestBody MapUpdateRequest map){
 		Map responseObject = ms.update(id, map);
 		
 		if (responseObject == null)
@@ -77,7 +79,7 @@ public class MapController {
 			summary = "Create a new map"
 	)
 	@PostMapping("/save")
-	public ResponseEntity<Map> save(@RequestBody Map map){
+	public ResponseEntity<Map> save(@RequestBody MapSaveRequest map){
 		return new ResponseEntity<>(ms.save(map), HttpStatus.OK);
 	}
 }
