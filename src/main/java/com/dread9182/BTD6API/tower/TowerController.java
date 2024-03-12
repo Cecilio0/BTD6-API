@@ -62,7 +62,7 @@ public class TowerController {
 	public ResponseEntity<List<Tower>> findByType(@PathVariable String type){
 		return new ResponseEntity<>(ts.findByType(type), HttpStatus.OK);
 	}
-	// todo Create and implement DTO for update and save, as well as implementing interceptors for said DTO
+	
 	@Operation(
 			summary = "Update an existing tower"
 	)
