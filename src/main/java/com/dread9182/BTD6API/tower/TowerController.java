@@ -2,6 +2,8 @@ package com.dread9182.BTD6API.tower;
 
 import com.dread9182.BTD6API.exception.NotFoundException;
 import com.dread9182.BTD6API.tower.model.Tower;
+import com.dread9182.BTD6API.tower.model.request.TowerSaveRequest;
+import com.dread9182.BTD6API.tower.model.request.TowerUpdateRequest;
 import com.dread9182.BTD6API.tower.service.ITowerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -65,7 +67,7 @@ public class TowerController {
 			summary = "Update an existing tower"
 	)
 	@PutMapping("/update/{id}")
-	public ResponseEntity<Tower> update(@PathVariable String id, @RequestBody Tower tower){
+	public ResponseEntity<Tower> update(@PathVariable String id, @RequestBody TowerUpdateRequest tower){
 		Tower result = ts.update(id, tower);
 		if(result == null)
 			throw new NotFoundException("No tower found with the given id");
@@ -77,7 +79,7 @@ public class TowerController {
 			summary = "Create a new tower"
 	)
 	@PostMapping("/save")
-	public ResponseEntity<Tower> save(@RequestBody Tower tower){
+	public ResponseEntity<Tower> save(@RequestBody TowerSaveRequest tower){
 		Tower result = ts.save(tower);
 		return new ResponseEntity<>(result, HttpStatus.CREATED);
 	}

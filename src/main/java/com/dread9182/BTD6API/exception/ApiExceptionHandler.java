@@ -1,5 +1,6 @@
 package com.dread9182.BTD6API.exception;
 
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,6 +24,19 @@ public class ApiExceptionHandler {
 	public ResponseEntity<Object> handleValueNotValidException(ValueNotValidException e){
 		ApiException apiException = new ApiException(
 				e.getMessage(),
+				badRequest
+		);
+		
+		return new ResponseEntity<>(apiException, badRequest);
+	}
+	
+	// Custom handling for unrecognized properties when parsing request bodies
+	@ExceptionHandler(value = {UnrecognizedPropertyException.class})
+	public ResponseEntity<Object> handleUnrecognizedPropertyException(UnrecognizedPropertyException e){
+		String message = "The " + e.getPropertyName() + " property is not valid for this type of request";
+		
+		ApiException apiException = new ApiException(
+				message,
 				badRequest
 		);
 		

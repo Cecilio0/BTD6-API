@@ -3,6 +3,8 @@ package com.dread9182.BTD6API.tower.service;
 import com.dread9182.BTD6API.exception.ValueNotValidException;
 import com.dread9182.BTD6API.tower.ITowerRepository;
 import com.dread9182.BTD6API.tower.model.Tower;
+import com.dread9182.BTD6API.tower.model.request.TowerSaveRequest;
+import com.dread9182.BTD6API.tower.model.request.TowerUpdateRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,13 +38,11 @@ public class TowerService implements ITowerService{
 	}
 	
 	@Override
-	public Tower update(String id, Tower tower) {
+	public Tower update(String id, TowerUpdateRequest tower) {
 		Tower toUpdate = tr.findById(id).orElse(null);
 		
 		if (toUpdate != null) {
-			toUpdate.setName(tower.getName());
 			toUpdate.setDescription(tower.getDescription());
-			toUpdate.setType(tower.getType());
 			toUpdate.setCost(tower.getCost());
 			toUpdate.setStats(tower.getStats());
 			toUpdate.setFootprint(tower.getFootprint());
@@ -56,7 +56,7 @@ public class TowerService implements ITowerService{
 	}
 	
 	@Override
-	public Tower save(Tower tower) {
+	public Tower save(TowerSaveRequest tower) {
 		Tower verifyUniqueness = tr.findByName(tower.getName()).orElse(null);
 		if(verifyUniqueness != null)
 			throw new ValueNotValidException("A tower with this name already exists");

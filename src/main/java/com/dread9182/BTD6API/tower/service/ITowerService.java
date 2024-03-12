@@ -1,6 +1,8 @@
 package com.dread9182.BTD6API.tower.service;
 
 import com.dread9182.BTD6API.tower.model.Tower;
+import com.dread9182.BTD6API.tower.model.request.TowerSaveRequest;
+import com.dread9182.BTD6API.tower.model.request.TowerUpdateRequest;
 
 import java.util.List;
 
@@ -14,8 +16,8 @@ public interface ITowerService {
 	
 	List<Tower> findByType(String type);
 	
-	Tower update(String id, Tower tower);
+	Tower update(String id, TowerUpdateRequest tower);
 	
-	Tower save(Tower tower);
+	Tower save(TowerSaveRequest tower);
 
 }

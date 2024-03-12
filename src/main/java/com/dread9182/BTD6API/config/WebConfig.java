@@ -7,7 +7,8 @@ import com.dread9182.BTD6API.interceptor.hero.HeroUnlockRequestHandler;
 import com.dread9182.BTD6API.interceptor.map.MapPostRequestHandler;
 import com.dread9182.BTD6API.interceptor.map.MapDifficultyRequestHandler;
 import com.dread9182.BTD6API.interceptor.map.MapPutRequestHandler;
-import com.dread9182.BTD6API.interceptor.tower.TowerBodyRequestHandler;
+import com.dread9182.BTD6API.interceptor.tower.TowerPostRequestHandler;
+import com.dread9182.BTD6API.interceptor.tower.TowerPutRequestHandler;
 import com.dread9182.BTD6API.interceptor.tower.TowerTypeRequestHandler;
 import com.dread9182.BTD6API.interceptor.user.UserAuthenticationRequestHandler;
 import com.dread9182.BTD6API.interceptor.user.UserRegisterRequestHandler;
@@ -27,11 +28,8 @@ public class WebConfig implements WebMvcConfigurer {
 		
 		// Towers
 		registry.addInterceptor(new TowerTypeRequestHandler()).addPathPatterns("/towers/type/**").order(10);
-		registry.addInterceptor(new TowerBodyRequestHandler())
-				.addPathPatterns(
-						"/towers/update/**",
-						"/towers/save")
-				.order(11);
+		registry.addInterceptor(new TowerPostRequestHandler()).addPathPatterns("/towers/save").order(11);
+		registry.addInterceptor(new TowerPutRequestHandler()).addPathPatterns("/towers/update/**").order(12);
 		
 		// Heroes
 		registry.addInterceptor(new HeroUnlockRequestHandler()).addPathPatterns("/heroes/how/**").order(15);
