@@ -55,6 +55,7 @@ public class UserService implements IUserService {
 	
 	@Override
 	public UserAuthenticationResponse authenticate(UserAuthenticationRequest request) {
+		// todo create custom exception handler for BadCredentialsException
 		authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(
 						request.getEmail(),

@@ -2,6 +2,7 @@ package com.dread9182.BTD6API.interceptor.user;
 
 import com.dread9182.BTD6API.exception.ValueNotValidException;
 import com.dread9182.BTD6API.user.model.request.UserAuthenticationRequest;
+import com.dread9182.BTD6API.utils.EmailValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,6 +21,9 @@ public class UserAuthenticationRequestHandler implements HandlerInterceptor {
 		} else if(userAuthenticationRequest.getPassword() == null || userAuthenticationRequest.getPassword().equals("")){
 			throw new ValueNotValidException("The password field on a user authentication request cannot be null");
 		}
+		
+		if(!EmailValidator.validate(userAuthenticationRequest.getEmail()))
+			throw new ValueNotValidException("The email provided is not valid");
 		
 		return true;
 	}

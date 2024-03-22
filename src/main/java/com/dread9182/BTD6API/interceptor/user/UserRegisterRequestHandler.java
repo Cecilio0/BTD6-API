@@ -2,11 +2,14 @@ package com.dread9182.BTD6API.interceptor.user;
 
 import com.dread9182.BTD6API.exception.ValueNotValidException;
 import com.dread9182.BTD6API.user.model.request.UserRegisterRequest;
+import com.dread9182.BTD6API.utils.EmailValidator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class UserRegisterRequestHandler implements HandlerInterceptor {
@@ -25,6 +28,10 @@ public class UserRegisterRequestHandler implements HandlerInterceptor {
 		} else if(userRegisterRequest.getPassword() == null || userRegisterRequest.getPassword().equals("")){
 			throw new ValueNotValidException("The password field on a user register request cannot be null");
 		}
+		
+		// Validate email
+		if(!EmailValidator.validate(userRegisterRequest.getEmail()))
+			throw new ValueNotValidException("The email provided is not valid");
 		
 		return true;
 	}
