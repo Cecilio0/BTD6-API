@@ -1,7 +1,6 @@
 package com.dread9182.BTD6API.user.service;
 
 import com.dread9182.BTD6API.config.JwtService;
-import com.dread9182.BTD6API.exception.NotFoundException;
 import com.dread9182.BTD6API.exception.ValueNotValidException;
 import com.dread9182.BTD6API.user.*;
 import com.dread9182.BTD6API.user.model.Role;
@@ -29,7 +28,6 @@ public class UserService implements IUserService {
 	@Autowired
 	private final AuthenticationManager authenticationManager;
 	
-	// todo set email to lower case to avoid the same email registering multiple times
 	@Override
 	public UserAuthenticationResponse register(UserRegisterRequest request) {
 		User verifyUniqueness = ur.findByEmail(request.getEmail()).orElse(null);
@@ -39,7 +37,7 @@ public class UserService implements IUserService {
 		User user = User.builder()
 				.firstName(request.getFirstName())
 				.lastName(request.getLastName())
-				.email(request.getEmail())
+				.email(request.getEmail().toLowerCase())
 				.password(passwordEncoder.encode(request.getPassword()))
 				.role(Role.ROLE_USER)
 				.build();
@@ -55,16 +53,15 @@ public class UserService implements IUserService {
 	
 	@Override
 	public UserAuthenticationResponse authenticate(UserAuthenticationRequest request) {
-		// todo create custom exception handler for BadCredentialsException
 		authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(
-						request.getEmail(),
+						request.getEmail().toLowerCase(),
 						request.getPassword()
 				)
 		);
 		
-		User user = ur.findByEmail(request.getEmail()).orElseThrow(() ->
-				new ValueNotValidException("Invalid user data"));
+		User user = ur.findByEmail(request.getEmail().toLowerCase()).orElseThrow(() ->
+				new ValueNotValidException("Invalid user login data"));
 		
 		
 		String jwt = jwtService.generateToken(user);
