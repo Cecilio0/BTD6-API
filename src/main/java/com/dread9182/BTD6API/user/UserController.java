@@ -3,6 +3,7 @@ package com.dread9182.BTD6API.user;
 import com.dread9182.BTD6API.user.model.request.UserAuthenticationRequest;
 import com.dread9182.BTD6API.user.model.request.UserAuthenticationResponse;
 import com.dread9182.BTD6API.user.model.request.UserRegisterRequest;
+import com.dread9182.BTD6API.user.model.request.UserRegisterResponse;
 import com.dread9182.BTD6API.user.service.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,7 +29,7 @@ public class UserController {
 			summary = "Register a new user"
 	)
 	@PostMapping("/register")
-	public ResponseEntity<UserAuthenticationResponse> register(
+	public ResponseEntity<UserRegisterResponse> register(
 			@RequestBody UserRegisterRequest request
 	) {
 		return new ResponseEntity<>(us.register(request), HttpStatus.CREATED);

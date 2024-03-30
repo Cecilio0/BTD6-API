@@ -9,6 +9,7 @@ import com.dread9182.BTD6API.user.model.User;
 import com.dread9182.BTD6API.user.model.request.UserAuthenticationRequest;
 import com.dread9182.BTD6API.user.model.request.UserAuthenticationResponse;
 import com.dread9182.BTD6API.user.model.request.UserRegisterRequest;
+import com.dread9182.BTD6API.user.model.request.UserRegisterResponse;
 import com.dread9182.BTD6API.user.service.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -44,7 +45,7 @@ public class UserServiceTests {
 	private AuthenticationManager authenticationManager;
 	
 	@Test
-	public void UserService_RegisterUser_ReturnsUserAuthenticationResponse() {
+	public void UserService_RegisterUser_ReturnsUserRegisterResponse() {
 		// We build an Item for the repository to return
 		User user = User.builder()
 				.id("7d5c97c0-74b1-4bef-b297-1ea357efd82a")
@@ -67,12 +68,11 @@ public class UserServiceTests {
 		Mockito.when(ur.findByEmail(Mockito.anyString())).thenReturn(Optional.empty());
 		Mockito.when(ur.save(Mockito.any(User.class))).thenReturn(user);
 		Mockito.when(passwordEncoder.encode(Mockito.anyString())).thenReturn("Password123");
-		Mockito.when(jwtService.generateToken(Mockito.any(User.class))).thenReturn("token");
 		
 		// We return an object of the expected class and subsequently test if it is not null
-		UserAuthenticationResponse userResponse = us.register(registerRequest);
+		UserRegisterResponse userResponse = us.register(registerRequest);
 		Assertions.assertNotNull(userResponse);
-		Assertions.assertEquals("token", userResponse.getToken());
+		Assertions.assertEquals("The user was registered correctly", userResponse.getMessage());
 	}
 	
 	@Test

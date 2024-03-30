@@ -8,6 +8,7 @@ import com.dread9182.BTD6API.user.model.User;
 import com.dread9182.BTD6API.user.model.request.UserAuthenticationRequest;
 import com.dread9182.BTD6API.user.model.request.UserAuthenticationResponse;
 import com.dread9182.BTD6API.user.model.request.UserRegisterRequest;
+import com.dread9182.BTD6API.user.model.request.UserRegisterResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,7 +30,7 @@ public class UserService implements IUserService {
 	private final AuthenticationManager authenticationManager;
 	
 	@Override
-	public UserAuthenticationResponse register(UserRegisterRequest request) {
+	public UserRegisterResponse register(UserRegisterRequest request) {
 		User verifyUniqueness = ur.findByEmail(request.getEmail()).orElse(null);
 		if(verifyUniqueness != null)
 			throw new ValueNotValidException("This email already has already been registered");
@@ -46,8 +47,8 @@ public class UserService implements IUserService {
 		
 		String jwt = jwtService.generateToken(user);
 		
-		return UserAuthenticationResponse.builder()
-				.token(jwt)
+		return UserRegisterResponse.builder()
+				.message("The user was registered correctly")
 				.build();
 	}
 	
