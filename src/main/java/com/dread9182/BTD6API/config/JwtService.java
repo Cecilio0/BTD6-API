@@ -63,7 +63,7 @@ public class JwtService {
 				.setClaims(extraClaims) // Setting all extra claims
 				.setSubject(userDetails.getUsername()) // Setting as subject the unique part of a user aside from id
 				.setIssuedAt(new Date(System.currentTimeMillis())) // Setting creation date
-				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)) // Setting expiration date, in this case 24 hours
+				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // Setting expiration date, in this case 24 hours
 				.signWith(getSigninKey(), SignatureAlgorithm.HS256) // Signing the token and deciding the algorithm to be used
 				.compact();
 	}
