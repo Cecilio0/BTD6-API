@@ -60,4 +60,6 @@ public class ApiExceptionHandler {
 	
 	// todo add handler for jwt exceptions
 	// check out https://medium.com/@mypascal2000/custom-handling-of-invalid-jwt-in-spring-boot-f66e60d59230
+	
+	// todo add handler for non existent requests
 }
